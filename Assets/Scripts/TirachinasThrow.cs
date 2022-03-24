@@ -21,10 +21,16 @@ public class TirachinasThrow : MonoBehaviour
   private Transform pek;
 
   [SerializeField]
+  private Transform[] stripPoints;
+
+  [SerializeField]
   private float launchForce = 500f;
 
   [SerializeField]
   private float upForce = 200f;
+
+  [SerializeField]
+  private float launchTorque = 15f;
 
   private bool mouseDown;
   private State state;
@@ -34,7 +40,7 @@ public class TirachinasThrow : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    for (int i = 0; i < positions.Length; i++)
+    for (int i = 0; i < lines.Length; i++)
     {
       lines[i].SetPosition(0, positions[i].position);
     }
@@ -42,7 +48,7 @@ public class TirachinasThrow : MonoBehaviour
     state = State.IDLE;
     mouseDown = false;
     pekBody = pek.GetComponent<Rigidbody>();
-    origin = pek.position;
+    origin = positions[2].position;
   }
 
   // Update is called once per frame
@@ -71,11 +77,14 @@ public class TirachinasThrow : MonoBehaviour
           worldPosition = hit.point;
           worldPosition.z = 0;
           worldPosition = origin + Vector3.ClampMagnitude(worldPosition - origin, 2f);
+          if (worldPosition.y < 0.35f)
+          {
+            worldPosition.y = 0.35f;
+          }
           pek.position = new Vector3(worldPosition.x, worldPosition.y, 0);
-          pek.LookAt(origin, Vector3.forward * 5f);
           for (int i = 0; i < lines.Length; i++)
           {
-            lines[i].SetPosition(1, worldPosition);
+            lines[i].SetPosition(1, stripPoints[i].position);
           }
         }
       }
@@ -84,9 +93,9 @@ public class TirachinasThrow : MonoBehaviour
     {
       if (state == State.IDLE)
       {
-        foreach (LineRenderer line in lines)
+        for (int i = 0; i < lines.Length; i++)
         {
-          line.SetPosition(1, pek.position);
+          lines[i].SetPosition(1, stripPoints[0].position);
         }
       }
       else
@@ -125,7 +134,9 @@ public class TirachinasThrow : MonoBehaviour
     {
       state = State.RELEASED;
       pekBody.isKinematic = false;
-      pekBody.AddForce(((origin - pek.position) * launchForce) + (Vector3.up * upForce), ForceMode.Acceleration);
+      Vector3 delta = origin - pek.position;
+      pekBody.AddForce((delta * launchForce) + (Vector3.up * upForce), ForceMode.Acceleration);
+      pekBody.AddTorque(delta + (Vector3.back * launchTorque));
     }
   }
 }

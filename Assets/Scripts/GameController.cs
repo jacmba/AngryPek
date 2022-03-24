@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
   public static event Action OnGameStart;
   public static event Action OnDragStart;
   public static event Action OnLaunchPek;
+  public static event Action OnPizzaCollected;
 
   // Start is called before the first frame update
   void Start()
@@ -36,5 +37,10 @@ public class GameController : MonoBehaviour
   public static void launchPek()
   {
     OnLaunchPek?.Invoke();
+  }
+
+  public static void collectPizza()
+  {
+    OnPizzaCollected?.Invoke();
   }
 }

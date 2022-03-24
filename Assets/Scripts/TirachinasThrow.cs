@@ -6,6 +6,7 @@ public class TirachinasThrow : MonoBehaviour
 {
   private enum State
   {
+    NOT_STARTED,
     IDLE,
     DRAGGING,
     RELEASED
@@ -42,18 +43,35 @@ public class TirachinasThrow : MonoBehaviour
   {
     for (int i = 0; i < lines.Length; i++)
     {
-      lines[i].SetPosition(0, positions[i].position);
+      Vector3 pos = positions[i].position;
+      lines[i].SetPosition(0, pos);
+      lines[i].SetPosition(1, stripPoints[0].position);
     }
 
-    state = State.IDLE;
+    state = State.NOT_STARTED;
     mouseDown = false;
     pekBody = pek.GetComponent<Rigidbody>();
     origin = positions[2].position;
+
+    GameController.OnGameStart += OnGameStart;
+  }
+
+  /// <summary>
+  /// This function is called when the MonoBehaviour will be destroyed.
+  /// </summary>
+  void OnDestroy()
+  {
+    GameController.OnGameStart -= OnGameStart;
   }
 
   // Update is called once per frame
   void Update()
   {
+    if (state == State.NOT_STARTED)
+    {
+      return;
+    }
+
     if (Input.GetMouseButtonDown(0))
     {
       OnMouseDown();
@@ -91,14 +109,7 @@ public class TirachinasThrow : MonoBehaviour
     }
     else
     {
-      if (state == State.IDLE)
-      {
-        for (int i = 0; i < lines.Length; i++)
-        {
-          lines[i].SetPosition(1, stripPoints[0].position);
-        }
-      }
-      else
+      if (state == State.RELEASED)
       {
         foreach (LineRenderer line in lines)
         {
@@ -121,6 +132,7 @@ public class TirachinasThrow : MonoBehaviour
     {
       state = State.DRAGGING;
       pekBody.isKinematic = true;
+      GameController.startDrag();
     }
   }
 
@@ -137,6 +149,12 @@ public class TirachinasThrow : MonoBehaviour
       Vector3 delta = origin - pek.position;
       pekBody.AddForce((delta * launchForce) + (Vector3.up * upForce), ForceMode.Acceleration);
       pekBody.AddTorque(delta + (Vector3.back * launchTorque));
+      GameController.launchPek();
     }
+  }
+
+  void OnGameStart()
+  {
+    state = State.IDLE;
   }
 }

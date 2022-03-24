@@ -7,7 +7,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267982823855853378}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5074e4d9b0c1dba6f995fffaa7034b1d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.75
@@ -75,6 +75,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67d8f85ef3ade3465b76400640df0da1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 67d8f85ef3ade3465b76400640df0da1, type: 3}
+      propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 67d8f85ef3ade3465b76400640df0da1, type: 3}

@@ -7,6 +7,9 @@ public class PizzaBitController : MonoBehaviour
   [SerializeField]
   private float rotateSpeed = 15f;
 
+  [SerializeField]
+  private GameObject particles;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -28,6 +31,8 @@ public class PizzaBitController : MonoBehaviour
     if (other.tag == "Player")
     {
       GameController.collectPizza();
+      GameObject fireworks = Instantiate(particles, transform);
+      fireworks.transform.SetParent(null);
       Destroy(gameObject);
     }
   }

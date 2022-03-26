@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
     // Draw attempts
     if (gameController.attemps > 0)
     {
-      attemptsText.text = "x " + gameController.attemps;
+      attemptsText.text = "" + gameController.attemps;
     }
   }
 }

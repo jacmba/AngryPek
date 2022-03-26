@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class GameController : MonoBehaviour
@@ -76,6 +77,10 @@ public class GameController : MonoBehaviour
     if (started)
     {
       attemps--;
+      if (attemps == 0)
+      {
+        SceneManager.LoadScene("Gameover");
+      }
     }
     else
     {

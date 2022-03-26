@@ -20,6 +20,9 @@ public class UIController : MonoBehaviour
   void Update()
   {
     // Draw attempts
-    attemptsText.text = "x " + gameController.attemps;
+    if (gameController.attemps > 0)
+    {
+      attemptsText.text = "x " + gameController.attemps;
+    }
   }
 }

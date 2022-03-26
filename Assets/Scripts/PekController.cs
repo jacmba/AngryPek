@@ -14,9 +14,6 @@ public class PekController : MonoBehaviour
   }
 
   [SerializeField]
-  private float rotSpeed = 15f;
-
-  [SerializeField]
   private float spawnTime = 3f;
 
   private Quaternion noRotation;
@@ -52,9 +49,6 @@ public class PekController : MonoBehaviour
   {
     switch (state)
     {
-      case State.IDLE:
-        transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
-        break;
       case State.TOUCHED:
         if (body.velocity.magnitude < 0.2f)
         {
@@ -69,6 +63,8 @@ public class PekController : MonoBehaviour
           transform.rotation = noRotation;
           transform.position = origin;
           body.velocity = Vector3.zero;
+          body.isKinematic = true;
+          state = State.IDLE;
           GameController.startGame();
         }
         break;

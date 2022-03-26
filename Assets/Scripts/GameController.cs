@@ -11,10 +11,36 @@ public class GameController : MonoBehaviour
   public static event Action OnLaunchPek;
   public static event Action OnPizzaCollected;
 
+  // Global variables
+  public static int maxAttempts = 3;
+
+  // Stage variables
+  [SerializeField]
+  public int attemps;
+
+  [SerializeField]
+  private bool isSandbox = false;
+
+  private bool started;
+
   // Start is called before the first frame update
   void Start()
   {
-    // Todo initialize stuff
+    if (!isSandbox)
+    {
+      attemps = maxAttempts;
+    }
+    started = false;
+
+    OnGameStart += onGameStart;
+  }
+
+  /// <summary>
+  /// This function is called when the MonoBehaviour will be destroyed.
+  /// </summary>
+  void OnDestroy()
+  {
+    OnGameStart -= onGameStart;
   }
 
   // Update is called once per frame
@@ -42,5 +68,18 @@ public class GameController : MonoBehaviour
   public static void collectPizza()
   {
     OnPizzaCollected?.Invoke();
+  }
+
+  // Own events implementation
+  void onGameStart()
+  {
+    if (started)
+    {
+      attemps--;
+    }
+    else
+    {
+      started = true;
+    }
   }
 }

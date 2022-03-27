@@ -37,6 +37,9 @@ public class TirachinasThrow : MonoBehaviour
   private State state;
   Rigidbody pekBody;
   private Vector3 origin;
+  private AudioSource audioSource;
+  private AudioClip stretchClip;
+  private AudioClip releaseClip;
 
   // Start is called before the first frame update
   void Start()
@@ -51,9 +54,13 @@ public class TirachinasThrow : MonoBehaviour
     state = State.NOT_STARTED;
     mouseDown = false;
     pekBody = pek.GetComponent<Rigidbody>();
+    audioSource = GetComponent<AudioSource>();
     origin = positions[2].position;
 
     GameController.OnGameStart += OnGameStart;
+
+    stretchClip = Resources.Load<AudioClip>("Sounds/stretch");
+    releaseClip = Resources.Load<AudioClip>("Sounds/release");
   }
 
   /// <summary>
@@ -133,6 +140,7 @@ public class TirachinasThrow : MonoBehaviour
       state = State.DRAGGING;
       pekBody.isKinematic = true;
       GameController.startDrag();
+      audioSource.PlayOneShot(stretchClip);
     }
   }
 
@@ -150,6 +158,7 @@ public class TirachinasThrow : MonoBehaviour
       pekBody.AddForce((delta * launchForce) + (Vector3.up * upForce), ForceMode.Acceleration);
       pekBody.AddTorque(delta + (Vector3.back * launchTorque));
       GameController.launchPek();
+      audioSource.PlayOneShot(releaseClip);
     }
   }
 

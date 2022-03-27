@@ -10,12 +10,6 @@ public class PizzaBitController : MonoBehaviour
   [SerializeField]
   private GameObject particles;
 
-  // Start is called before the first frame update
-  void Start()
-  {
-    // ToDo initialize stuff
-  }
-
   // Update is called once per frame
   void Update()
   {

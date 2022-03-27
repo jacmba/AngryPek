@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
   [SerializeField]
   private bool isSandbox = false;
 
+  private AudioClip wherePizza;
+  private AudioSource audioSource;
   private bool started;
 
   // Start is called before the first frame update
@@ -34,6 +36,10 @@ public class GameController : MonoBehaviour
     started = false;
 
     OnGameStart += onGameStart;
+
+    audioSource = GetComponent<AudioSource>();
+
+    wherePizza = Resources.Load<AudioClip>("Sounds/where_pizza");
   }
 
   /// <summary>
@@ -85,6 +91,7 @@ public class GameController : MonoBehaviour
     else
     {
       started = true;
+      audioSource.PlayOneShot(wherePizza);
     }
   }
 }

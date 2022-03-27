@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2626985410454514731}
   m_Layer: 0
   m_Name: LandSet
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: land_block (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}
 --- !u!4 &2593603013193660875 stripped
@@ -168,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
       propertyPath: m_Name
       value: land_block (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}
@@ -231,6 +239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: land_block (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}
 --- !u!4 &2593603012706342549 stripped
@@ -292,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
       propertyPath: m_Name
       value: land_block (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}
@@ -355,6 +371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: land_block (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}
 --- !u!4 &2593603012394251798 stripped
@@ -416,6 +436,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
       propertyPath: m_Name
       value: land_block (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}
@@ -479,6 +503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: land_block
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}
 --- !u!4 &2593603011320777821 stripped
@@ -540,6 +568,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
       propertyPath: m_Name
       value: land_block (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 93ec271907170c031be387d011143444, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec271907170c031be387d011143444, type: 3}

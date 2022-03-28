@@ -42,8 +42,8 @@ Camera:
   m_GameObject: {fileID: 7742500661116002338}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.53211606, g: 0.6676464, b: 0.758, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -100,3 +100,4 @@ MonoBehaviour:
   end: {fileID: 0}
   chaseSpeed: 2
   travellingSpeed: 0.5
+  untravellingSpeed: 2

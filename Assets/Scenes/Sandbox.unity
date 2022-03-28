@@ -4936,22 +4936,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7742500661116002336, guid: e36976daf31b4d68fb6054c4ce7a918b, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742500661116002336, guid: e36976daf31b4d68fb6054c4ce7a918b, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742500661116002336, guid: e36976daf31b4d68fb6054c4ce7a918b, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742500661116002336, guid: e36976daf31b4d68fb6054c4ce7a918b, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7742500661116002338, guid: e36976daf31b4d68fb6054c4ce7a918b, type: 3}
       propertyPath: m_Name
       value: Camera

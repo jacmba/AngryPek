@@ -53,7 +53,10 @@ public class GameController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    // Todo update stuff
+    if (!started && Input.GetMouseButtonDown(0))
+    {
+      startGame();
+    }
   }
 
   // Event bus invoke methods

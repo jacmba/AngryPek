@@ -520,7 +520,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.12032752, g: 0.1509434, b: 0.12464116, a: 0}
+  m_BackGroundColor: {r: 0.077181995, g: 0.14899999, b: 0.08744172, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -741,6 +741,7 @@ GameObject:
   - component: {fileID: 1427973330}
   - component: {fileID: 1427973332}
   - component: {fileID: 1427973331}
+  - component: {fileID: 1427973333}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -809,6 +810,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427973329}
   m_CullTransparentMesh: 1
+--- !u!114 &1427973333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427973329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6994e3a9ab99db0bce239565d11376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alpha: 1
+  fadeSpeed: 2
+  direction: 1
 --- !u!1 &1705887365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 267982823855853378, guid: 6fc0c4a94bd189cb7973bad7c829cc3e, type: 3}

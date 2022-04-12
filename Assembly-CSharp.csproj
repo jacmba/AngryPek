@@ -36,16 +36,16 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\TirachinasThrow.cs" />
-     <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Scripts\PekController.cs" />
-     <Compile Include="Assets\Scripts\PizzaBitController.cs" />
-     <Compile Include="Assets\Scripts\LifeTimer.cs" />
      <Compile Include="Assets\Scripts\UIController.cs" />
-     <Compile Include="Assets\Scripts\HitSoundable.cs" />
-     <Compile Include="Assets\Scripts\Rotator.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\TirachinasThrow.cs" />
      <Compile Include="Assets\Scripts\TextFader.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\Rotator.cs" />
+     <Compile Include="Assets\Scripts\LifeTimer.cs" />
+     <Compile Include="Assets\Scripts\HitSoundable.cs" />
+     <Compile Include="Assets\Scripts\PizzaBitController.cs" />
+     <Compile Include="Assets\Scripts\PekController.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/jacinto/Unity/Hub/Editor/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

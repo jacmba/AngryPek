@@ -1,0 +1,109 @@
+name: Actions
+
+on:
+  push: { branches: [release/*] }
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  get_version:
+    name: Get release version
+    runs-on: ubuntu-18.04
+    outputs:
+      version: ${{ steps.get_version.outputs.substring }}
+    steps:
+      - name: Get version
+        id: get_version
+        uses: bhowell2/github-substring-action@v1.0.0
+        with:
+          value: ${{ github.ref }}
+          index_of_str: "refs/heads/release/"
+
+  release:
+    name: Create release
+    runs-on: ubuntu-18.04
+    needs: get_version
+    outputs:
+      url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Create changelog
+        id: create_changelog
+        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          onlyLastTag: true
+          stripHeaders: true
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ needs.get_version.outputs.version }}
+          release_name: v${{ needs.get_version.outputs.version }}
+          draft: false
+          prerelease: false
+          body: ${{ steps.create_changelog.outputs.changelog }}
+
+  build:
+    name: Build ${{ matrix.targetPlatform }} with Unity
+    runs-on: ubuntu-18.04
+    needs:
+      - get_version
+      - release
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneLinux64
+          - StandaloneWindows64
+          - StandaloneOSX
+          - WebGL
+          - Android
+    steps:
+      # Checkout
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+
+      # Unit tests
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          androidAppBundle: true
+          buildName: AngryPek
+
+      # Zip build folder
+      - name: Zip build folder
+        uses: papeloto/action-zip@v1
+        with:
+          files: build/${{ matrix.targetPlatform }}
+          dest: AngryPek-${{ needs.get_version.outputs.version }}-${{ matrix.targetPlatform }}.zip
+
+      # Publish release asset
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.release.outputs.url }}
+          asset_path: ./AngryPek-${{ needs.get_version.outputs.version }}-${{ matrix.targetPlatform }}.zip
+          asset_name: AngryPek-${{ needs.get_version.outputs.version }}-${{ matrix.targetPlatform }}.zip
+          asset_content_type: application/zip

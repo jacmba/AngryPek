@@ -637,6 +637,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Scripts.csproj">
+      <Project>{2c517730-4804-c0d4-ade0-426eccb89970}</Project>
+      <Name>Scripts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

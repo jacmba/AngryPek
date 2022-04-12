@@ -1,0 +1,93 @@
+name: Actions
+
+on:
+  push: { branches: [master] }
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  snapshot:
+    name: Create snapshot release
+    runs-on: ubuntu-18.04
+    outputs:
+      url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Create changelog
+        id: create_changelog
+        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          onlyLastTag: true
+          stripHeaders: true
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: snapshot-${{ github.sha }}
+          release_name: snapshot-${{ github.sha }}
+          draft: false
+          prerelease: true
+          body: ${{ steps.create_changelog.outputs.changelog }}
+
+  build:
+    name: Build ${{ matrix.targetPlatform }} with Unity
+    runs-on: ubuntu-18.04
+    needs:
+      - snapshot
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneLinux64
+          - StandaloneWindows64
+          - StandaloneOSX
+          - WebGL
+          - Android
+    steps:
+      # Checkout
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+
+      # Unit tests
+      - name: Run unit tests
+        uses: game-ci/unity-test-runner@v2
+        with:
+          test_mode: editMode
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: AngryPek
+
+      # Zip build folder
+      - name: Zip build folder
+        uses: papeloto/action-zip@v1
+        with:
+          files: build/${{ matrix.targetPlatform }}
+          dest: AngryPek-SNAPSHOT-${{ matrix.targetPlatform }}.zip
+
+      # Publish release asset
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.snapshot.outputs.url }}
+          asset_path: ./AngryPek-SNAPSHOT-${{ matrix.targetPlatform }}.zip
+          asset_name: AngryPek-SNAPSHOT-${{ github.sha }}-${{ matrix.targetPlatform }}.zip
+          asset_content_type: application/zip

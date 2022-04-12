@@ -65,7 +65,7 @@ jobs:
       - name: Run unit tests
         uses: game-ci/unity-test-runner@v2
         with:
-          test_mode: editMode
+          testMode: EditMode
 
       # Build
       - name: Build project

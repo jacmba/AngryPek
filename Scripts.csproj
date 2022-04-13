@@ -46,6 +46,7 @@
      <Compile Include="Assets\Scripts\Environment\HitSoundable.cs" />
      <Compile Include="Assets\Scripts\Items\PizzaBitController.cs" />
      <Compile Include="Assets\Scripts\PekController.cs" />
+     <Compile Include="Assets\Scripts\Game\Game.cs" />
      <None Include="Assets\Scripts\Scripts.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>/home/jacinto/Unity/Hub/Editor/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

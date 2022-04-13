@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using System;
 
 public class BasicTest
 {
@@ -12,7 +11,7 @@ public class BasicTest
   public void BasicTestSimplePasses()
   {
     // Use the Assert class to test conditions
-    Console.WriteLine("Hello tests!");
+    Debug.Log("Hello tests!");
     Assert.IsTrue(true, "The truth should be true");
   }
 }

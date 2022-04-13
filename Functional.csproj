@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Tests\Functional\SimpleTest.cs" />
+     <Compile Include="Assets\Tests\Functional\TitleTests.cs" />
      <None Include="Assets\Tests\Functional\Functional.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>/home/jacinto/Unity/Hub/Editor/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 
   // Global variables
   public static int maxAttempts = 3;
+  public static int level = 1;
 
   // Stage variables
   [SerializeField]
@@ -96,5 +97,11 @@ public class GameController : MonoBehaviour
       started = true;
       audioSource.PlayOneShot(wherePizza);
     }
+  }
+
+  public static void Clean()
+  {
+    maxAttempts = 3;
+    level = 1;
   }
 }

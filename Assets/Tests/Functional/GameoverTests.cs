@@ -27,4 +27,14 @@ public class GameoverTests
     Assert.AreEqual(0, scene.buildIndex);
     Assert.AreEqual("TitleScreen", scene.name);
   }
+
+  [UnityTest]
+  public IEnumerator GameoverTestShouldHaveGameOverText()
+  {
+    SceneManager.LoadScene("Gameover");
+    yield return null;
+
+    Text txt = Transform.FindObjectOfType<Text>();
+    Assert.AreEqual("Game Over", txt.text);
+  }
 }

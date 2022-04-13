@@ -9,12 +9,28 @@ public class GameoverController : MonoBehaviour
   void Start()
   {
     GameController.Clean();
-    StartCoroutine(GotoTitle());
+    StartCoroutine(DeferGotoTitle());
   }
 
-  IEnumerator GotoTitle()
+  IEnumerator DeferGotoTitle()
   {
     yield return new WaitForSeconds(5f);
+    GotoTitle();
+  }
+
+  /// <summary>
+  /// Update is called every frame, if the MonoBehaviour is enabled.
+  /// </summary>
+  void Update()
+  {
+    if (Input.anyKeyDown)
+    {
+      GotoTitle();
+    }
+  }
+
+  void GotoTitle()
+  {
     SceneManager.LoadScene("TitleScreen");
   }
 }

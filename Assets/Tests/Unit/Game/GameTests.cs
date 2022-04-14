@@ -56,4 +56,19 @@ public class GameTests
     stars = game.Finish(5);
     Assert.AreEqual(stars, 2);
   }
+
+  [Test]
+  public void TestHasPizzaShouldBeFalseByDefault()
+  {
+    Game game = new Game(0);
+    Assert.IsFalse(game.hasPizza);
+  }
+
+  [Test]
+  public void TestHasPizzaShouldBeTrueAfterCollecting()
+  {
+    Game game = new Game(0);
+    game.CollectPizza();
+    Assert.IsTrue(game.hasPizza);
+  }
 }

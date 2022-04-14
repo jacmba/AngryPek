@@ -6,10 +6,12 @@ using UnityEngine;
 public class Game
 {
   public int enemies { get; private set; }
+  public bool hasPizza { get; private set; }
 
   public Game(int enemies)
   {
     this.enemies = enemies;
+    hasPizza = false;
   }
 
   public void KillEnemy()
@@ -21,5 +23,10 @@ public class Game
   {
     int stars = lives - enemies;
     return Mathf.Clamp(stars, 0, 3);
+  }
+
+  public void CollectPizza()
+  {
+    hasPizza = true;
   }
 }

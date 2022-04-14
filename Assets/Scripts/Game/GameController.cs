@@ -15,17 +15,17 @@ public class GameController : MonoBehaviour
   // Global variables
   public static int maxAttempts = 3;
   public static int level = 1;
+  public static int achievedStars;
 
   // Stage variables
-  [SerializeField]
-  public int attemps;
-
-  [SerializeField]
-  private bool isSandbox = false;
+  [SerializeField] public int attemps;
+  [SerializeField] private bool isSandbox = false;
+  [SerializeField] private int numEnemies = 0;
 
   private AudioClip wherePizza;
   private AudioSource audioSource;
   private bool started;
+  private Game game;
 
   // Start is called before the first frame update
   void Start()
@@ -35,11 +35,12 @@ public class GameController : MonoBehaviour
       attemps = maxAttempts;
     }
     started = false;
+    game = new Game(numEnemies);
 
     OnGameStart += onGameStart;
+    OnPizzaCollected += onCollectPizza;
 
     audioSource = GetComponent<AudioSource>();
-
     wherePizza = Resources.Load<AudioClip>("Sounds/where_pizza");
   }
 
@@ -49,6 +50,7 @@ public class GameController : MonoBehaviour
   void OnDestroy()
   {
     OnGameStart -= onGameStart;
+    OnPizzaCollected -= onCollectPizza;
   }
 
   // Update is called once per frame
@@ -84,6 +86,13 @@ public class GameController : MonoBehaviour
   // Own events implementation
   void onGameStart()
   {
+    if (game.hasPizza)
+    {
+      level++;
+      achievedStars = game.Finish(attemps);
+      SceneManager.LoadScene("PostStage");
+    }
+
     if (started)
     {
       attemps--;
@@ -97,6 +106,11 @@ public class GameController : MonoBehaviour
       started = true;
       audioSource.PlayOneShot(wherePizza);
     }
+  }
+
+  void onCollectPizza()
+  {
+    game.CollectPizza();
   }
 
   public static void Clean()

@@ -34,4 +34,32 @@ public class PostStageTests
     Assert.IsNotNull(txt);
     Assert.AreEqual("Level cleared!", txt.text);
   }
+
+  [UnityTest]
+  public IEnumerator PostStageTestShouldEnableAllStars()
+  {
+    GameController.achievedStars = 3;
+    yield return new WaitForSeconds(3);
+    GameObject star1 = GameObject.Find("star");
+    GameObject star2 = GameObject.Find("star (1)");
+    GameObject star3 = GameObject.Find("star (2)");
+
+    Assert.IsTrue(star1.activeSelf);
+    Assert.IsTrue(star2.activeSelf);
+    Assert.IsTrue(star3.activeSelf);
+  }
+
+  [UnityTest]
+  public IEnumerator PostStageTestShouldHaveTwoEnabledStars()
+  {
+    GameController.achievedStars = 2;
+    yield return new WaitForSeconds(3);
+    GameObject star1 = GameObject.Find("star");
+    GameObject star2 = GameObject.Find("star (1)");
+    GameObject star3 = GameObject.Find("star (2)");
+
+    Assert.IsTrue(star1.activeSelf);
+    Assert.IsTrue(star2.activeSelf);
+    Assert.IsNull(star3);
+  }
 }

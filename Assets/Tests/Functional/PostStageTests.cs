@@ -62,4 +62,28 @@ public class PostStageTests
     Assert.IsTrue(star2.activeSelf);
     Assert.IsNull(star3);
   }
+
+  [UnityTest]
+  public IEnumerator PostStageTestShouldHaveOneActivePizzaBit()
+  {
+    GameController.achievedPieces = 1;
+    yield return new WaitForSeconds(5);
+    GameObject piece1 = GameObject.Find("PizzaBitPrefab");
+    GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");
+
+    Assert.IsTrue(piece1.activeSelf);
+    Assert.IsNull(piece2);
+  }
+
+  [UnityTest]
+  public IEnumerator PostStageTestShouldHaveTwoActivePizzaBits()
+  {
+    GameController.achievedPieces = 2;
+    yield return new WaitForSeconds(5);
+    GameObject piece1 = GameObject.Find("PizzaBitPrefab");
+    GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");
+
+    Assert.IsTrue(piece1.activeSelf);
+    Assert.IsTrue(piece2.activeSelf);
+  }
 }

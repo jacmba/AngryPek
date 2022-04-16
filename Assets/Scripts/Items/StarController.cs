@@ -21,5 +21,9 @@ public class StarController : MonoBehaviour
     {
       nextStar.SetActive(true);
     }
+    else
+    {
+      PostStageController.ShowPizza();
+    }
   }
 }

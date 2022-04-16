@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Game\PostStageController.cs" />
      <Compile Include="Assets\Scripts\UI\UIController.cs" />
      <Compile Include="Assets\Scripts\Game\CameraController.cs" />
      <Compile Include="Assets\Scripts\Player\TirachinasThrow.cs" />
@@ -43,14 +44,14 @@
      <Compile Include="Assets\Scripts\Game\GameController.cs" />
      <Compile Include="Assets\Scripts\Misc\Rotator.cs" />
      <Compile Include="Assets\Scripts\Misc\LifeTimer.cs" />
-     <Compile Include="Assets\Scripts\Environment\HitSoundable.cs" />
-     <Compile Include="Assets\Scripts\Items\PizzaBitController.cs" />
-     <Compile Include="Assets\Scripts\PekController.cs" />
-     <Compile Include="Assets\Scripts\Game\Game.cs" />
      <Compile Include="Assets\Scripts\Game\TitleController.cs" />
+     <Compile Include="Assets\Scripts\Environment\HitSoundable.cs" />
      <Compile Include="Assets\Scripts\Game\GameoverController.cs" />
+     <Compile Include="Assets\Scripts\Items\PizzaBitController.cs" />
      <Compile Include="Assets\Scripts\Items\StarController.cs" />
-     <Compile Include="Assets\Scripts\Game\PostStageController.cs" />
+     <Compile Include="Assets\Scripts\Game\Game.cs" />
+     <Compile Include="Assets\Scripts\PekController.cs" />
+     <Compile Include="Assets\Scripts\Items\PizzaBoxController.cs" />
      <None Include="Assets\Scripts\Scripts.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>/home/jacinto/Unity/Hub/Editor/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -286,11 +287,11 @@
     <Reference Include="Newtonsoft.Json">
         <HintPath>/home/jacinto/projects/unity/AngryPek/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="unityplastic">
-        <HintPath>/home/jacinto/projects/unity/AngryPek/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Cecil">
         <HintPath>/home/jacinto/projects/unity/AngryPek/Library/PackageCache/com.unity.nuget.mono-cecil@1.10.1/Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+        <HintPath>/home/jacinto/projects/unity/AngryPek/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>/home/jacinto/Unity/Hub/Editor/2020.3.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

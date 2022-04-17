@@ -13,7 +13,7 @@ public class PizzaBoxController : MonoBehaviour
     animator = GetComponent<Animator>();
     StartCoroutine(openBox());
 
-    for (int i = 0; i < GameController.achievedPieces && i < pieces.Length; i++)
+    for (int i = 0; i < GameController.achievedPieces - 1 && i < pieces.Length; i++)
     {
       pieces[i].SetActive(true);
     }
@@ -29,5 +29,13 @@ public class PizzaBoxController : MonoBehaviour
   {
     yield return new WaitForSeconds(1f);
     animator.SetTrigger("Open");
+  }
+
+  public void AddPiece()
+  {
+    GameObject piece = pieces[GameController.achievedPieces - 1];
+    piece.SetActive(true);
+    Animator animator = piece.GetComponent<Animator>();
+    animator.enabled = true;
   }
 }

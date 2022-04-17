@@ -13,6 +13,10 @@ public class PostStageController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    if (GameController.achievedPieces < 1)
+    {
+      GameController.achievedPieces = 1;
+    }
     OnPizzaShow += onPizzaShow;
     StartCoroutine(ShowStars());
   }
@@ -38,6 +42,12 @@ public class PostStageController : MonoBehaviour
 
   void onPizzaShow()
   {
+    StartCoroutine(pizzaShow());
+  }
+
+  IEnumerator pizzaShow()
+  {
+    yield return new WaitForSeconds(1f);
     pizzaBox.SetActive(true);
   }
 

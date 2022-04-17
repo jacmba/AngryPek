@@ -69,10 +69,13 @@ public class PostStageTests
     GameController.achievedPieces = 1;
     yield return new WaitForSeconds(5);
     GameObject piece1 = GameObject.Find("PizzaBitPrefab");
-    GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");
 
+    Assert.IsNull(piece1);
+
+    yield return new WaitForSeconds(5);
+
+    piece1 = GameObject.Find("PizzaBitPrefab");
     Assert.IsTrue(piece1.activeSelf);
-    Assert.IsNull(piece2);
   }
 
   [UnityTest]
@@ -84,6 +87,11 @@ public class PostStageTests
     GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");
 
     Assert.IsTrue(piece1.activeSelf);
+    Assert.IsNull(piece2);
+
+    yield return new WaitForSeconds(5);
+
+    piece2 = GameObject.Find("PizzaBitPrefab (1)");
     Assert.IsTrue(piece2.activeSelf);
   }
 }

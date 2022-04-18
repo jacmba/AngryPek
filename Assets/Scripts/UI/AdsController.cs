@@ -23,7 +23,7 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
 
   public void InitializeAds()
   {
-    Advertisement.Initialize(ANDROID_ID, Application.isEditor, this);
+    Advertisement.Initialize(ANDROID_ID, false, this);
   }
 
   public void LoadAd()

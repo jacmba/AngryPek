@@ -47,7 +47,7 @@ public class PostStageController : MonoBehaviour
     if (canContinue && Input.GetMouseButtonDown(0) && canTouch)
     {
       Debug.Log("Continue");
-      int nextLevel = GameController.level < GameController.maxLevel ? GameController.level : 0;
+      int nextLevel = GameController.level <= GameController.maxLevel ? GameController.level : 0;
       if (nextLevel == 0)
       {
         GameController.Clean();

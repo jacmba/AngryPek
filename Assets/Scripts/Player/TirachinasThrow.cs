@@ -40,6 +40,7 @@ public class TirachinasThrow : MonoBehaviour
   private AudioSource audioSource;
   private AudioClip stretchClip;
   private AudioClip releaseClip;
+  private bool canTouch;
 
   // Start is called before the first frame update
   void Start()
@@ -53,6 +54,7 @@ public class TirachinasThrow : MonoBehaviour
 
     state = State.NOT_STARTED;
     mouseDown = false;
+    canTouch = false;
     pekBody = pek.GetComponent<Rigidbody>();
     audioSource = GetComponent<AudioSource>();
     origin = positions[2].position;
@@ -79,7 +81,7 @@ public class TirachinasThrow : MonoBehaviour
       return;
     }
 
-    if (Input.GetMouseButtonDown(0))
+    if (Input.GetMouseButtonDown(0) && canTouch)
     {
       OnMouseDown();
     }
@@ -125,6 +127,11 @@ public class TirachinasThrow : MonoBehaviour
           line.SetPosition(1, newPos);
         }
       }
+    }
+
+    if (!Input.GetMouseButton(0))
+    {
+      canTouch = true;
     }
   }
 

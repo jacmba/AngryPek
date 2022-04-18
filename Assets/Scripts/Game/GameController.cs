@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
   private AudioSource audioSource;
   private bool started;
   private Game game;
+  private bool canTouch;
 
   // Start is called before the first frame update
   void Start()
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour
       attemps = maxAttempts;
     }
     started = false;
+    canTouch = false;
     game = new Game(numEnemies);
 
     OnGameStart += onGameStart;
@@ -58,9 +60,14 @@ public class GameController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (!started && Input.GetMouseButtonDown(0))
+    if (!started && Input.GetMouseButtonDown(0) && canTouch)
     {
       startGame();
+    }
+
+    if (!Input.GetMouseButton(0))
+    {
+      canTouch = true;
     }
   }
 

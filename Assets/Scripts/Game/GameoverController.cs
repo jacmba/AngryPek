@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameoverController : MonoBehaviour
 {
+  private bool canTouch;
+
   // Start is called before the first frame update
   void Start()
   {
+    canTouch = false;
     GameController.Clean();
     StartCoroutine(DeferGotoTitle());
   }
@@ -23,9 +26,14 @@ public class GameoverController : MonoBehaviour
   /// </summary>
   void Update()
   {
-    if (Input.anyKeyDown)
+    if (Input.GetMouseButtonDown(0) && canTouch)
     {
       GotoTitle();
+    }
+
+    if (!Input.GetMouseButton(0))
+    {
+      canTouch = true;
     }
   }
 

@@ -14,12 +14,14 @@ public class PostStageController : MonoBehaviour
   public static event Action OnAdComplete;
 
   private bool canContinue;
+  private bool canTouch;
   private AdsController adsController;
 
   // Start is called before the first frame update
   void Start()
   {
     canContinue = false;
+    canTouch = false;
     if (GameController.achievedPieces < 1)
     {
       GameController.achievedPieces = 1;
@@ -42,7 +44,7 @@ public class PostStageController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (canContinue && Input.GetMouseButtonDown(0))
+    if (canContinue && Input.GetMouseButtonDown(0) && canTouch)
     {
       Debug.Log("Continue");
       int nextLevel = GameController.level < GameController.maxLevel ? GameController.level : 0;
@@ -51,6 +53,11 @@ public class PostStageController : MonoBehaviour
         GameController.Clean();
       }
       SceneManager.LoadScene(nextLevel);
+    }
+
+    if (!Input.GetMouseButton(0))
+    {
+      canTouch = true;
     }
   }
 
@@ -68,6 +75,7 @@ public class PostStageController : MonoBehaviour
   void onAdComplete()
   {
     Debug.Log("Ad Complete!!");
+    canTouch = false;
     ShowContinue();
   }
 

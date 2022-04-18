@@ -61,6 +61,7 @@ public class CameraController : MonoBehaviour
         {
 
           pos = Mathf.Lerp(pos, pek.position.x, chaseSpeed * Time.deltaTime);
+          pos = Mathf.Clamp(pos, origin.x, end.position.x);
           move(pos);
         }
         break;

@@ -71,16 +71,16 @@ public class PekController : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-          transform.rotation = noRotation;
-          transform.position = origin;
-          body.velocity = Vector3.zero;
-          body.isKinematic = true;
-          state = State.IDLE;
-          GameController.startGame();
+          PekReset();
         }
         break;
       default:
         break;
+    }
+
+    if (transform.position.y < -10f)
+    {
+      PekReset();
     }
   }
 
@@ -118,5 +118,15 @@ public class PekController : MonoBehaviour
   void OnPizzaCollected()
   {
     audioSource.PlayOneShot(yumClip);
+  }
+
+  void PekReset()
+  {
+    transform.rotation = noRotation;
+    transform.position = origin;
+    body.velocity = Vector3.zero;
+    body.isKinematic = true;
+    state = State.IDLE;
+    GameController.startGame();
   }
 }

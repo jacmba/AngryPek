@@ -77,7 +77,7 @@ public class PostStageController : MonoBehaviour
     pizzaBox.SetActive(true);
 
     yield return new WaitForSeconds(3f);
-    if (Application.isEditor || SystemInfo.deviceType == DeviceType.Handheld)
+    if ((Application.isEditor || SystemInfo.deviceType == DeviceType.Handheld) && UnityEngine.Random.Range(1, 4) == 2)
     {
       adsController.enabled = true;
     }

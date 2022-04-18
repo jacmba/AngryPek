@@ -50,7 +50,7 @@
      <Compile Include="Assets\Scripts\Items\PizzaBitController.cs" />
      <Compile Include="Assets\Scripts\Items\StarController.cs" />
      <Compile Include="Assets\Scripts\Game\Game.cs" />
-     <Compile Include="Assets\Scripts\PekController.cs" />
+     <Compile Include="Assets\Scripts\Player\PekController.cs" />
      <Compile Include="Assets\Scripts\Items\PizzaBoxController.cs" />
      <Compile Include="Assets\Scripts\UI\AdsController.cs" />
      <None Include="Assets\Scripts\Scripts.asmdef" />

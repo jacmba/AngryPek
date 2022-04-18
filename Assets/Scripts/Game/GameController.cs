@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
   public static int level = 1;
   public static int achievedStars;
   public static int achievedPieces;
+  public static int maxLevel = 1;
 
   // Stage variables
   [SerializeField] public int attemps;

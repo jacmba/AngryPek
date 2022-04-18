@@ -100,6 +100,7 @@ public class GameController : MonoBehaviour
       level++;
       achievedStars = game.Finish(attemps);
       SceneManager.LoadScene("PostStage");
+      return;
     }
 
     if (started)

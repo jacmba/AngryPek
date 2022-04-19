@@ -98,6 +98,7 @@ public class GameController : MonoBehaviour
     if (game.hasPizza)
     {
       level++;
+      achievedPieces++;
       achievedStars = game.Finish(attemps);
       SceneManager.LoadScene("PostStage");
       return;

@@ -128,5 +128,6 @@ public class GameController : MonoBehaviour
   {
     maxAttempts = 3;
     level = 1;
+    achievedPieces = 0;
   }
 }

@@ -1476,6 +1476,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1791282868018405640, guid: 19bb6784e320bbe67b9b13ef5ddf1480, type: 3}
+      propertyPath: attemps
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791282868018405640, guid: 19bb6784e320bbe67b9b13ef5ddf1480, type: 3}
       propertyPath: isSandbox
       value: 0
       objectReference: {fileID: 0}

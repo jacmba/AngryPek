@@ -8,11 +8,13 @@ public class StarController : MonoBehaviour
   [SerializeField] private GameObject nextStar;
   [SerializeField] private GameData data;
   private AudioSource audioSource;
+  private EventBus eventBus;
 
   // Start is called before the first frame update
   void Start()
   {
     audioSource = GetComponent<AudioSource>();
+    eventBus = EventBus.GetInstance();
   }
 
   public void Grown()
@@ -24,7 +26,7 @@ public class StarController : MonoBehaviour
     }
     else
     {
-      PostStageController.ShowPizza();
+      eventBus.ShowPizza();
     }
   }
 }

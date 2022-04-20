@@ -7,11 +7,13 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
 {
   private const string ANDROID_ID = "4706337";
   private const string PLACEMENT_ID = "Interstitial_Android";
+  private EventBus eventBus;
   [SerializeField] private GameData data;
 
   // Start is called before the first frame update
   void Start()
   {
+    eventBus = EventBus.GetInstance();
     if (!Advertisement.isInitialized)
     {
       InitializeAds();
@@ -46,7 +48,7 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
   public void OnInitializationFailed(UnityAdsInitializationError err, string message)
   {
     Debug.Log($"Error initializing Ads: {err.ToString()} - {message}");
-    PostStageController.CompleteAd();
+    eventBus.CompleteAd();
   }
 
   public void OnUnityAdsAdLoaded(string id)
@@ -58,13 +60,13 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
   public void OnUnityAdsFailedToLoad(string id, UnityAdsLoadError err, string message)
   {
     Debug.Log($"Failed to load ad: {id} - {err.ToString()} - {message}");
-    PostStageController.CompleteAd();
+    eventBus.CompleteAd();
   }
 
   public void OnUnityAdsShowFailure(string id, UnityAdsShowError err, string message)
   {
     Debug.Log($"Error showing ad: {id} - {err.ToString()} - {message}");
-    PostStageController.CompleteAd();
+    eventBus.CompleteAd();
   }
 
   public void OnUnityAdsShowStart(string id)
@@ -84,6 +86,6 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
     {
       data.maxAttempts++;
     }
-    PostStageController.CompleteAd();
+    eventBus.CompleteAd();
   }
 }

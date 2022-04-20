@@ -11,6 +11,8 @@ public class EventBus
   public event Action OnDragStart;
   public event Action OnLaunchPek;
   public event Action OnPizzaCollected;
+  public event Action OnPizzaShow;
+  public event Action OnAdComplete;
 
   private EventBus() { }
 
@@ -43,5 +45,15 @@ public class EventBus
   public void collectPizza()
   {
     OnPizzaCollected?.Invoke();
+  }
+
+  public void ShowPizza()
+  {
+    OnPizzaShow?.Invoke();
+  }
+
+  public void CompleteAd()
+  {
+    OnAdComplete?.Invoke();
   }
 }

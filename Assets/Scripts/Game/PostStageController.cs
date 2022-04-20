@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.SceneManagement;
 
 public class PostStageController : MonoBehaviour
@@ -11,12 +10,10 @@ public class PostStageController : MonoBehaviour
   [SerializeField] private GameObject continueText;
   [SerializeField] private GameData data;
 
-  public static event Action OnPizzaShow;
-  public static event Action OnAdComplete;
-
   private bool canContinue;
   private bool canTouch;
   private AdsController adsController;
+  private EventBus eventBus;
 
   // Start is called before the first frame update
   void Start()
@@ -29,8 +26,11 @@ public class PostStageController : MonoBehaviour
       data.pieces = 1;
     }
     adsController = GetComponent<AdsController>();
-    OnPizzaShow += onPizzaShow;
-    OnAdComplete += onAdComplete;
+
+    eventBus = EventBus.GetInstance();
+    eventBus.OnPizzaShow += onPizzaShow;
+    eventBus.OnAdComplete += onAdComplete;
+
     StartCoroutine(ShowStars());
   }
 
@@ -39,8 +39,8 @@ public class PostStageController : MonoBehaviour
   /// </summary>
   void OnDestroy()
   {
-    OnPizzaShow -= onPizzaShow;
-    OnAdComplete -= onAdComplete;
+    eventBus.OnPizzaShow -= onPizzaShow;
+    eventBus.OnAdComplete -= onAdComplete;
   }
 
   // Update is called once per frame
@@ -95,16 +95,6 @@ public class PostStageController : MonoBehaviour
     {
       ShowContinue();
     }
-  }
-
-  public static void ShowPizza()
-  {
-    OnPizzaShow?.Invoke();
-  }
-
-  public static void CompleteAd()
-  {
-    OnAdComplete?.Invoke();
   }
 
   void ShowContinue()

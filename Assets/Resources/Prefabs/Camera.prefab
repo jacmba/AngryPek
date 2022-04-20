@@ -98,6 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pek: {fileID: 0}
   end: {fileID: 0}
-  chaseSpeed: 2
+  chaseSpeed: 3
   travellingSpeed: 0.5
   untravellingSpeed: 2

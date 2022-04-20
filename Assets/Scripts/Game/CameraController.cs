@@ -29,12 +29,14 @@ public class CameraController : MonoBehaviour
 
   private State state;
   private Vector3 origin;
+  private float offset;
 
   // Start is called before the first frame update
   void Start()
   {
     origin = transform.position;
     state = State.TRAVELLING;
+    offset = transform.position.x - pek.position.x;
 
     GameController.OnLaunchPek += OnLaunchPek;
     GameController.OnGameStart += OnGameStart;
@@ -60,7 +62,7 @@ public class CameraController : MonoBehaviour
         if (Vector3.Distance(transform.position, pek.position) > chaseSpeed)
         {
 
-          pos = Mathf.Lerp(pos, pek.position.x, chaseSpeed * Time.deltaTime);
+          pos = Mathf.Lerp(pos, pek.position.x + offset, chaseSpeed * Time.deltaTime);
           pos = Mathf.Clamp(pos, origin.x, end.position.x);
           move(pos);
         }

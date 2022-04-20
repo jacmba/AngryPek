@@ -8,6 +8,7 @@ public class GameData : ScriptableObject
   public int level;
   public int stars;
   public int totalStars;
+  public int accStars;
   public int pieces;
   public int attempts;
 
@@ -16,15 +17,26 @@ public class GameData : ScriptableObject
     level = 1;
     stars = 0;
     totalStars = 0;
+    accStars = 0;
     pieces = 0;
     attempts = Constants.MAX_ATTEMPTS;
   }
 
-  public void FinishStage(int stars)
+  public bool FinishStage(int stars)
   {
     level++;
     pieces++;
     this.stars = stars;
     totalStars += stars;
+    accStars += stars;
+
+    if (accStars >= 5)
+    {
+      attempts++;
+      accStars -= 5;
+      return true;
+    }
+
+    return false;
   }
 }

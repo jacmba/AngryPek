@@ -39,6 +39,7 @@
      <Compile Include="Assets\Tests\Unit\BasicTest.cs" />
      <Compile Include="Assets\Tests\Unit\Game\GameControllerTests.cs" />
      <Compile Include="Assets\Tests\Unit\Game\GameTests.cs" />
+     <Compile Include="Assets\Tests\Unit\Game\GameDataTests.cs" />
      <None Include="Assets\Tests\Unit\Unit.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>/home/jacinto/Unity/Hub/Editor/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

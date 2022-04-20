@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PizzaBitController : MonoBehaviour
 {
-  [SerializeField]
-  private float rotateSpeed = 15f;
+  [SerializeField] private float rotateSpeed = 15f;
 
-  [SerializeField]
-  private GameObject particles;
+  [SerializeField] private GameObject particles;
+  private EventBus eventBus;
+
+  /// <summary>
+  /// Start is called on the frame when a script is enabled just before
+  /// any of the Update methods is called the first time.
+  /// </summary>
+  void Start()
+  {
+    eventBus = EventBus.GetInstance();
+  }
 
   // Update is called once per frame
   void Update()
@@ -24,7 +32,7 @@ public class PizzaBitController : MonoBehaviour
   {
     if (other.tag == "Player")
     {
-      GameController.collectPizza();
+      eventBus.collectPizza();
       GameObject fireworks = Instantiate(particles, transform);
       fireworks.transform.SetParent(null);
       Destroy(gameObject);

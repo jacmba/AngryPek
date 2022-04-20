@@ -25,6 +25,7 @@ public class PekController : MonoBehaviour
   private AudioClip yumClip;
   private AudioClip ooyClip;
   private AudioClip bounceClip;
+  private EventBus eventBus;
 
   // Start is called before the first frame update
   void Start()
@@ -36,9 +37,10 @@ public class PekController : MonoBehaviour
     body = GetComponent<Rigidbody>();
     audioSource = GetComponent<AudioSource>();
 
-    GameController.OnDragStart += OnDragStart;
-    GameController.OnLaunchPek += OnLaunchPek;
-    GameController.OnPizzaCollected += OnPizzaCollected;
+    eventBus = EventBus.GetInstance();
+    eventBus.OnDragStart += OnDragStart;
+    eventBus.OnLaunchPek += OnLaunchPek;
+    eventBus.OnPizzaCollected += OnPizzaCollected;
 
     yumClip = Resources.Load<AudioClip>("Sounds/yumyum");
     ooyClip = Resources.Load<AudioClip>("Sounds/ooy");
@@ -50,9 +52,9 @@ public class PekController : MonoBehaviour
   /// </summary>
   void OnDestroy()
   {
-    GameController.OnDragStart -= OnDragStart;
-    GameController.OnLaunchPek -= OnLaunchPek;
-    GameController.OnPizzaCollected -= OnPizzaCollected;
+    eventBus.OnDragStart -= OnDragStart;
+    eventBus.OnLaunchPek -= OnLaunchPek;
+    eventBus.OnPizzaCollected -= OnPizzaCollected;
   }
 
   // Update is called once per frame
@@ -127,6 +129,6 @@ public class PekController : MonoBehaviour
     body.velocity = Vector3.zero;
     body.isKinematic = true;
     state = State.IDLE;
-    GameController.startGame();
+    eventBus.startGame();
   }
 }

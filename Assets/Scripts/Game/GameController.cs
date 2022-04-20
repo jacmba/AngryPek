@@ -2,16 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
 
 public class GameController : MonoBehaviour
 {
-  // Event bus stuff
-  public static event Action OnGameStart;
-  public static event Action OnDragStart;
-  public static event Action OnLaunchPek;
-  public static event Action OnPizzaCollected;
-
   // Global variables
   public static int maxAttempts = 3;
   public static int level = 1;
@@ -29,6 +22,7 @@ public class GameController : MonoBehaviour
   private bool started;
   private Game game;
   private bool canTouch;
+  private EventBus eventBus;
 
   // Start is called before the first frame update
   void Start()
@@ -41,8 +35,9 @@ public class GameController : MonoBehaviour
     canTouch = false;
     game = new Game(numEnemies);
 
-    OnGameStart += onGameStart;
-    OnPizzaCollected += onCollectPizza;
+    eventBus = EventBus.GetInstance();
+    eventBus.OnGameStart += onGameStart;
+    eventBus.OnPizzaCollected += onCollectPizza;
 
     audioSource = GetComponent<AudioSource>();
     wherePizza = Resources.Load<AudioClip>("Sounds/where_pizza");
@@ -53,8 +48,8 @@ public class GameController : MonoBehaviour
   /// </summary>
   void OnDestroy()
   {
-    OnGameStart -= onGameStart;
-    OnPizzaCollected -= onCollectPizza;
+    eventBus.OnGameStart -= onGameStart;
+    eventBus.OnPizzaCollected -= onCollectPizza;
   }
 
   // Update is called once per frame
@@ -62,34 +57,13 @@ public class GameController : MonoBehaviour
   {
     if (!started && Input.GetMouseButtonDown(0) && canTouch)
     {
-      startGame();
+      eventBus.startGame();
     }
 
     if (!Input.GetMouseButton(0))
     {
       canTouch = true;
     }
-  }
-
-  // Event bus invoke methods
-  public static void startGame()
-  {
-    OnGameStart?.Invoke();
-  }
-
-  public static void startDrag()
-  {
-    OnDragStart?.Invoke();
-  }
-
-  public static void launchPek()
-  {
-    OnLaunchPek?.Invoke();
-  }
-
-  public static void collectPizza()
-  {
-    OnPizzaCollected?.Invoke();
   }
 
   // Own events implementation

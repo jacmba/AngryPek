@@ -30,6 +30,7 @@ public class CameraController : MonoBehaviour
   private State state;
   private Vector3 origin;
   private float offset;
+  private EventBus eventBus;
 
   // Start is called before the first frame update
   void Start()
@@ -38,8 +39,9 @@ public class CameraController : MonoBehaviour
     state = State.TRAVELLING;
     offset = transform.position.x - pek.position.x;
 
-    GameController.OnLaunchPek += OnLaunchPek;
-    GameController.OnGameStart += OnGameStart;
+    eventBus = EventBus.GetInstance();
+    eventBus.OnLaunchPek += OnLaunchPek;
+    eventBus.OnGameStart += OnGameStart;
   }
 
   /// <summary>
@@ -47,8 +49,8 @@ public class CameraController : MonoBehaviour
   /// </summary>
   void OnDestroy()
   {
-    GameController.OnLaunchPek -= OnLaunchPek;
-    GameController.OnGameStart -= OnGameStart;
+    eventBus.OnLaunchPek -= OnLaunchPek;
+    eventBus.OnGameStart -= OnGameStart;
   }
 
   // Update is called once per frame
@@ -80,7 +82,7 @@ public class CameraController : MonoBehaviour
         move(pos);
         if (Mathf.Abs(transform.position.x - origin.x) < untravellingSpeed * Time.deltaTime)
         {
-          GameController.startGame();
+          eventBus.startGame();
         }
         break;
       default:

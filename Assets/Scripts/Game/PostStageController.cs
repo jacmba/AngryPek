@@ -21,10 +21,6 @@ public class PostStageController : MonoBehaviour
     canContinue = false;
     canTouch = false;
 
-    if (data.pieces < 1)
-    {
-      data.pieces = 1;
-    }
     adsController = GetComponent<AdsController>();
 
     eventBus = EventBus.GetInstance();

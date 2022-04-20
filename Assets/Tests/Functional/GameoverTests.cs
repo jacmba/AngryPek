@@ -26,6 +26,8 @@ public class GameoverTests
   public IEnumerator GameoverTestShouldResetData()
   {
     data.attempts = 10;
+    Assert.AreEqual(10, data.attempts);
+
     SceneManager.LoadScene("Gameover");
     yield return new WaitForSeconds(.1f);
 

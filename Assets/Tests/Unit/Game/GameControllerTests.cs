@@ -23,11 +23,11 @@ public class GameControllerTests
   [Test]
   public void GameControllerTestDataClean()
   {
-    data.attempts = 5;
-    data.level = 10;
+    data.attempts = 10;
+    data.level = 5;
 
     data.Clean();
     Assert.AreEqual(data.attempts, 3);
-    data.level = 1;
+    Assert.AreEqual(1, data.level);
   }
 }

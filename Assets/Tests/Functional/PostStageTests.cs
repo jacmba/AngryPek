@@ -47,7 +47,7 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldEnableAllStars()
   {
-    data.stars = 3;
+    data.FinishStage(3);
     yield return new WaitForSeconds(3);
     GameObject star1 = GameObject.Find("star");
     GameObject star2 = GameObject.Find("star (1)");
@@ -61,7 +61,7 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveTwoEnabledStars()
   {
-    data.stars = 2;
+    data.FinishStage(2);
     yield return new WaitForSeconds(3);
     GameObject star1 = GameObject.Find("star");
     GameObject star2 = GameObject.Find("star (1)");
@@ -75,32 +75,39 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveOneActivePizzaBit()
   {
-    data.pieces = 1;
-    yield return new WaitForSeconds(5);
+    data.FinishStage(1);
+    //yield return new WaitForSeconds(5);
     GameObject piece1 = GameObject.Find("PizzaBitPrefab");
+    GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");
 
     Assert.IsNull(piece1);
 
-    yield return new WaitForSeconds(5);
+    yield return new WaitForSeconds(7);
 
     piece1 = GameObject.Find("PizzaBitPrefab");
     Assert.IsTrue(piece1.activeSelf);
+    Assert.IsNull(piece2);
   }
 
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveTwoActivePizzaBits()
   {
-    data.pieces = 2;
+    data.pieces = 1;
+    data.FinishStage(2);
     yield return new WaitForSeconds(5);
     GameObject piece1 = GameObject.Find("PizzaBitPrefab");
     GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");
+    GameObject piece3 = GameObject.Find("PizzaBitPrefab (2)");
 
     Assert.IsTrue(piece1.activeSelf);
     Assert.IsNull(piece2);
+    Assert.IsNull(piece3);
 
     yield return new WaitForSeconds(5);
 
     piece2 = GameObject.Find("PizzaBitPrefab (1)");
+    piece3 = GameObject.Find("PizzaBitPrefab (2)");
     Assert.IsTrue(piece2.activeSelf);
+    Assert.IsNull(piece3);
   }
 }

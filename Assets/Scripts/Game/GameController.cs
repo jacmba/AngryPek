@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
   {
     if (!isSandbox)
     {
-      attemps = Constants.MAX_ATTEMPTS;
+      attemps = data.attempts;
     }
     started = false;
     canTouch = false;
@@ -65,10 +65,8 @@ public class GameController : MonoBehaviour
   {
     if (game.hasPizza)
     {
-      data.level++;
-      data.pieces++;
-      data.stars = game.Finish(attemps);
-      data.totalStars += data.stars;
+      int stars = game.Finish(attemps);
+      data.FinishStage(stars);
       SceneManager.LoadScene("PostStage");
       return;
     }

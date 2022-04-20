@@ -10,7 +10,6 @@ public class GameData : ScriptableObject
   public int totalStars;
   public int pieces;
   public int attempts;
-  public int maxAttempts;
 
   public void Clean()
   {
@@ -18,7 +17,14 @@ public class GameData : ScriptableObject
     stars = 0;
     totalStars = 0;
     pieces = 0;
-    maxAttempts = Constants.MAX_ATTEMPTS;
-    attempts = maxAttempts;
+    attempts = Constants.MAX_ATTEMPTS;
+  }
+
+  public void FinishStage(int stars)
+  {
+    level++;
+    pieces++;
+    this.stars = stars;
+    totalStars += stars;
   }
 }

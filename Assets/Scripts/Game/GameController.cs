@@ -7,15 +7,13 @@ public class GameController : MonoBehaviour
 {
   // Global variables
   public static int maxAttempts = 3;
-  public static int level = 1;
-  public static int achievedStars;
-  public static int achievedPieces;
   public static int maxLevel = 4;
 
   // Stage variables
   [SerializeField] public int attemps;
   [SerializeField] private bool isSandbox = false;
   [SerializeField] private int numEnemies = 0;
+  [SerializeField] GameData data;
 
   private AudioClip wherePizza;
   private AudioSource audioSource;
@@ -71,9 +69,10 @@ public class GameController : MonoBehaviour
   {
     if (game.hasPizza)
     {
-      level++;
-      achievedPieces++;
-      achievedStars = game.Finish(attemps);
+      data.level++;
+      data.pieces++;
+      data.stars = game.Finish(attemps);
+      data.totalStars += data.stars;
       SceneManager.LoadScene("PostStage");
       return;
     }
@@ -84,6 +83,7 @@ public class GameController : MonoBehaviour
       if (attemps == 0)
       {
         SceneManager.LoadScene("Gameover");
+        return;
       }
     }
     else
@@ -96,12 +96,5 @@ public class GameController : MonoBehaviour
   void onCollectPizza()
   {
     game.CollectPizza();
-  }
-
-  public static void Clean()
-  {
-    maxAttempts = 3;
-    level = 1;
-    achievedPieces = 0;
   }
 }

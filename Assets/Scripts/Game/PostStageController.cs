@@ -9,6 +9,7 @@ public class PostStageController : MonoBehaviour
   [SerializeField] private GameObject rootStar;
   [SerializeField] private GameObject pizzaBox;
   [SerializeField] private GameObject continueText;
+  [SerializeField] private GameData data;
 
   public static event Action OnPizzaShow;
   public static event Action OnAdComplete;
@@ -22,9 +23,10 @@ public class PostStageController : MonoBehaviour
   {
     canContinue = false;
     canTouch = false;
-    if (GameController.achievedPieces < 1)
+
+    if (data.pieces < 1)
     {
-      GameController.achievedPieces = 1;
+      data.pieces = 1;
     }
     adsController = GetComponent<AdsController>();
     OnPizzaShow += onPizzaShow;
@@ -47,10 +49,10 @@ public class PostStageController : MonoBehaviour
     if (canContinue && Input.GetMouseButtonDown(0) && canTouch)
     {
       Debug.Log("Continue");
-      int nextLevel = GameController.level <= GameController.maxLevel ? GameController.level : 0;
+      int nextLevel = data.level <= GameController.maxLevel ? data.level : 0;
       if (nextLevel == 0)
       {
-        GameController.Clean();
+        data.Clean();
       }
       SceneManager.LoadScene(nextLevel);
     }

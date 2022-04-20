@@ -8,14 +8,28 @@ using UnityEngine.SceneManagement;
 
 public class GameoverTests
 {
+  private GameData data;
+
+  [SetUp]
+  public void Setup()
+  {
+    data = Resources.Load<GameData>("Data/Game");
+  }
+
+  [TearDown]
+  public void TearDown()
+  {
+    data.Clean();
+  }
+
   [UnityTest]
   public IEnumerator GameoverTestShouldResetData()
   {
-    GameController.maxAttempts = 10;
+    data.attempts = 10;
     SceneManager.LoadScene("Gameover");
     yield return new WaitForSeconds(.1f);
 
-    Assert.AreEqual(3, GameController.maxAttempts);
+    Assert.AreEqual(3, data.attempts);
   }
 
   [UnityTest]

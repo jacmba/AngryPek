@@ -6,14 +6,28 @@ using UnityEngine.TestTools;
 
 public class GameControllerTests
 {
+  private GameData data;
+
+  [SetUp]
+  public void Setup()
+  {
+    data = Resources.Load<GameData>("Data/Game");
+  }
+
+  [TearDown]
+  public void TearDown()
+  {
+    data.Clean();
+  }
+
   [Test]
   public void GameControllerTestDataClean()
   {
-    GameController.maxAttempts = 5;
-    GameController.level = 10;
+    data.attempts = 5;
+    data.level = 10;
 
-    GameController.Clean();
-    Assert.AreEqual(GameController.maxAttempts, 3);
-    GameController.level = 1;
+    data.Clean();
+    Assert.AreEqual(data.attempts, 3);
+    data.level = 1;
   }
 }

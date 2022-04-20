@@ -294,6 +294,7 @@ MonoBehaviour:
   rootStar: {fileID: 5809202532573861365}
   pizzaBox: {fileID: 1473404729}
   continueText: {fileID: 900736649}
+  data: {fileID: 11400000, guid: 26f9bb7ad8867f823a50b039f325787f, type: 2}
 --- !u!114 &414921645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,6 +1177,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1767934951}
     m_Modifications:
     - target: {fileID: 5809202531666791742, guid: 7808d849085eaaab78de0b33af84ee47, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 26f9bb7ad8867f823a50b039f325787f, type: 2}
+    - target: {fileID: 5809202531666791742, guid: 7808d849085eaaab78de0b33af84ee47, type: 3}
       propertyPath: index
       value: 3
       objectReference: {fileID: 0}
@@ -1379,6 +1384,7 @@ MonoBehaviour:
   - {fileID: 532862774}
   - {fileID: 1410025227}
   - {fileID: 762844524}
+  data: {fileID: 11400000, guid: 26f9bb7ad8867f823a50b039f325787f, type: 2}
 --- !u!95 &1473404732
 Animator:
   serializedVersion: 3
@@ -1526,6 +1532,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1767934951}
     m_Modifications:
+    - target: {fileID: 5809202531666791742, guid: 7808d849085eaaab78de0b33af84ee47, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 26f9bb7ad8867f823a50b039f325787f, type: 2}
     - target: {fileID: 5809202531666791742, guid: 7808d849085eaaab78de0b33af84ee47, type: 3}
       propertyPath: index
       value: 2
@@ -1898,6 +1908,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1767934951}
     m_Modifications:
+    - target: {fileID: 5809202531666791742, guid: 7808d849085eaaab78de0b33af84ee47, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 26f9bb7ad8867f823a50b039f325787f, type: 2}
     - target: {fileID: 5809202531666791742, guid: 7808d849085eaaab78de0b33af84ee47, type: 3}
       propertyPath: index
       value: 1

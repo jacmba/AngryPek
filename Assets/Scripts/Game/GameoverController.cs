@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameoverController : MonoBehaviour
 {
+  [SerializeField] GameData data;
   private bool canTouch;
 
   // Start is called before the first frame update
   void Start()
   {
     canTouch = false;
-    GameController.Clean();
+    data.Clean();
     StartCoroutine(DeferGotoTitle());
   }
 

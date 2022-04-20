@@ -6,6 +6,7 @@ public class StarController : MonoBehaviour
 {
   [SerializeField] private int index;
   [SerializeField] private GameObject nextStar;
+  [SerializeField] private GameData data;
   private AudioSource audioSource;
 
   // Start is called before the first frame update
@@ -17,7 +18,7 @@ public class StarController : MonoBehaviour
   public void Grown()
   {
     audioSource.Play();
-    if (nextStar != null && GameController.achievedStars > index)
+    if (nextStar != null && data.stars > index)
     {
       nextStar.SetActive(true);
     }

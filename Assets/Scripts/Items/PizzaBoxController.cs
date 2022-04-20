@@ -5,6 +5,7 @@ using UnityEngine;
 public class PizzaBoxController : MonoBehaviour
 {
   [SerializeField] private GameObject[] pieces;
+  [SerializeField] private GameData data;
   private Animator animator;
 
   // Start is called before the first frame update
@@ -13,7 +14,7 @@ public class PizzaBoxController : MonoBehaviour
     animator = GetComponent<Animator>();
     StartCoroutine(openBox());
 
-    for (int i = 0; i < GameController.achievedPieces - 1 && i < pieces.Length; i++)
+    for (int i = 0; i < data.pieces - 1 && i < pieces.Length; i++)
     {
       pieces[i].SetActive(true);
     }
@@ -33,7 +34,7 @@ public class PizzaBoxController : MonoBehaviour
 
   public void AddPiece()
   {
-    GameObject piece = pieces[GameController.achievedPieces - 1];
+    GameObject piece = pieces[data.pieces - 1];
     piece.SetActive(true);
     Animator animator = piece.GetComponent<Animator>();
     animator.enabled = true;

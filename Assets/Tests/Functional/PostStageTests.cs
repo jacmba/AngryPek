@@ -8,10 +8,19 @@ using UnityEngine.UI;
 
 public class PostStageTests
 {
+  private GameData data;
+
   [SetUp]
   public void Setup()
   {
+    data = Resources.Load<GameData>("Data/Game");
     SceneManager.LoadScene("PostStage");
+  }
+
+  [TearDown]
+  public void TearDown()
+  {
+    data.Clean();
   }
 
   [UnityTest]
@@ -38,7 +47,7 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldEnableAllStars()
   {
-    GameController.achievedStars = 3;
+    data.stars = 3;
     yield return new WaitForSeconds(3);
     GameObject star1 = GameObject.Find("star");
     GameObject star2 = GameObject.Find("star (1)");
@@ -52,7 +61,7 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveTwoEnabledStars()
   {
-    GameController.achievedStars = 2;
+    data.stars = 2;
     yield return new WaitForSeconds(3);
     GameObject star1 = GameObject.Find("star");
     GameObject star2 = GameObject.Find("star (1)");
@@ -66,7 +75,7 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveOneActivePizzaBit()
   {
-    GameController.achievedPieces = 1;
+    data.pieces = 1;
     yield return new WaitForSeconds(5);
     GameObject piece1 = GameObject.Find("PizzaBitPrefab");
 
@@ -81,7 +90,7 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveTwoActivePizzaBits()
   {
-    GameController.achievedPieces = 2;
+    data.pieces = 2;
     yield return new WaitForSeconds(5);
     GameObject piece1 = GameObject.Find("PizzaBitPrefab");
     GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");

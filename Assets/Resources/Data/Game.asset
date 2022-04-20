@@ -17,3 +17,4 @@ MonoBehaviour:
   totalStars: 0
   pieces: 0
   attempts: 3
+  maxAttempts: 3

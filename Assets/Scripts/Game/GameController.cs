@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-  // Global variables
-  public static int maxAttempts = 3;
-  public static int maxLevel = 4;
-
   // Stage variables
   [SerializeField] public int attemps;
   [SerializeField] private bool isSandbox = false;
@@ -27,7 +23,7 @@ public class GameController : MonoBehaviour
   {
     if (!isSandbox)
     {
-      attemps = maxAttempts;
+      attemps = Constants.MAX_ATTEMPTS;
     }
     started = false;
     canTouch = false;

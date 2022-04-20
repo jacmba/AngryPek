@@ -7,6 +7,7 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
 {
   private const string ANDROID_ID = "4706337";
   private const string PLACEMENT_ID = "Interstitial_Android";
+  [SerializeField] private GameData data;
 
   // Start is called before the first frame update
   void Start()
@@ -81,7 +82,7 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
     Debug.Log($"Ad show complete: {id} - {state.ToString()}");
     if (state == UnityAdsShowCompletionState.COMPLETED)
     {
-      GameController.maxAttempts++;
+      data.maxAttempts++;
     }
     PostStageController.CompleteAd();
   }

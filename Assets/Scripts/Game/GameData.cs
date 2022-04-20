@@ -18,6 +18,7 @@ public class GameData : ScriptableObject
     stars = 0;
     totalStars = 0;
     pieces = 0;
-    attempts = Constants.MAX_ATTEMPTS;
+    maxAttempts = Constants.MAX_ATTEMPTS;
+    attempts = maxAttempts;
   }
 }

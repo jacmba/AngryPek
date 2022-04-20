@@ -82,7 +82,7 @@ public class CameraController : MonoBehaviour
         move(pos);
         if (Mathf.Abs(transform.position.x - origin.x) < untravellingSpeed * Time.deltaTime)
         {
-          eventBus.startGame();
+          eventBus.StartGame();
         }
         break;
       default:

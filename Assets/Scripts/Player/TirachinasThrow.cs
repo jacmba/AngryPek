@@ -148,7 +148,7 @@ public class TirachinasThrow : MonoBehaviour
     {
       state = State.DRAGGING;
       pekBody.isKinematic = true;
-      eventBus.startDrag();
+      eventBus.StartDrag();
       audioSource.PlayOneShot(stretchClip);
     }
   }
@@ -166,7 +166,7 @@ public class TirachinasThrow : MonoBehaviour
       Vector3 delta = origin - pek.position;
       pekBody.AddForce((delta * launchForce) + (Vector3.up * upForce), ForceMode.Acceleration);
       pekBody.AddTorque(delta + (Vector3.back * launchTorque));
-      eventBus.launchPek();
+      eventBus.LaunchPek();
       audioSource.PlayOneShot(releaseClip);
     }
   }

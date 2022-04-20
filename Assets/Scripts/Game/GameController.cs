@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
   {
     if (!started && Input.GetMouseButtonDown(0) && canTouch)
     {
-      eventBus.startGame();
+      eventBus.StartGame();
     }
 
     if (!Input.GetMouseButton(0))

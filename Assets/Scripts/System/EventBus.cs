@@ -27,22 +27,22 @@ public class EventBus
   }
 
   // Event bus invoke methods
-  public void startGame()
+  public void StartGame()
   {
     OnGameStart?.Invoke();
   }
 
-  public void startDrag()
+  public void StartDrag()
   {
     OnDragStart?.Invoke();
   }
 
-  public void launchPek()
+  public void LaunchPek()
   {
     OnLaunchPek?.Invoke();
   }
 
-  public void collectPizza()
+  public void CollectPizza()
   {
     OnPizzaCollected?.Invoke();
   }

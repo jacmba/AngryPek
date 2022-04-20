@@ -32,7 +32,7 @@ public class PizzaBitController : MonoBehaviour
   {
     if (other.tag == "Player")
     {
-      eventBus.collectPizza();
+      eventBus.CollectPizza();
       GameObject fireworks = Instantiate(particles, transform);
       fireworks.transform.SetParent(null);
       Destroy(gameObject);

@@ -129,6 +129,6 @@ public class PekController : MonoBehaviour
     body.velocity = Vector3.zero;
     body.isKinematic = true;
     state = State.IDLE;
-    eventBus.startGame();
+    eventBus.StartGame();
   }
 }

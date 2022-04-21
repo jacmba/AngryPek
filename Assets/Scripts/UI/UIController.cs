@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-  [SerializeField]
-  private Text attemptsText;
+  [SerializeField] private Text attemptsText;
+  [SerializeField] private Text starsText;
+  [SerializeField] private GameData data;
 
   private GameController gameController;
 
@@ -22,7 +23,10 @@ public class UIController : MonoBehaviour
     // Draw attempts
     if (gameController.game.attempts > 0)
     {
-      attemptsText.text = "" + gameController.game.attempts;
+      attemptsText.text = gameController.game.attempts.ToString();
     }
+
+    // Draw stars
+    starsText.text = data.totalStars.ToString();
   }
 }

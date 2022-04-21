@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     eventBus.OnGameStart += OnGameStart;
     eventBus.OnPizzaCollected += OnCollectPizza;
     eventBus.OnFadeOutDone += OnFadeOutDone;
+    eventBus.OnExitToMenu += OnExitToMenu;
 
     audioSource = GetComponent<AudioSource>();
     wherePizza = Resources.Load<AudioClip>("Sounds/where_pizza");
@@ -46,6 +47,7 @@ public class GameController : MonoBehaviour
     eventBus.OnGameStart -= OnGameStart;
     eventBus.OnPizzaCollected -= OnCollectPizza;
     eventBus.OnFadeOutDone -= OnFadeOutDone;
+    eventBus.OnExitToMenu -= OnExitToMenu;
   }
 
   // Update is called once per frame
@@ -98,5 +100,11 @@ public class GameController : MonoBehaviour
   {
     string scene = game.hasPizza ? "PostStage" : "Gameover";
     SceneManager.LoadScene(scene);
+  }
+
+  void OnExitToMenu()
+  {
+    data.Clean();
+    SceneManager.LoadScene(0);
   }
 }

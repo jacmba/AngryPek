@@ -16,6 +16,7 @@ public class EventBus
   public event Action OnGameRendered;
   public event Action OnFadeOutStarted;
   public event Action OnFadeOutDone;
+  public event Action OnExitToMenu;
 
   private EventBus() { }
 
@@ -73,5 +74,10 @@ public class EventBus
   public void DoneFadeOut()
   {
     OnFadeOutDone?.Invoke();
+  }
+
+  public void ExitToMenu()
+  {
+    OnExitToMenu?.Invoke();
   }
 }

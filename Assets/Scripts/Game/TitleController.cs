@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class TitleController : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class TitleController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (EventSystem.current.currentSelectedGameObject != null)
+    {
+      return;
+    }
+
     if (Input.GetMouseButtonDown(0) && canTouch)
     {
       SceneManager.LoadScene(1);
@@ -28,5 +34,11 @@ public class TitleController : MonoBehaviour
     {
       canTouch = true;
     }
+  }
+
+  public void OnExitClick()
+  {
+    Debug.Log("Bye!");
+    Application.Quit();
   }
 }

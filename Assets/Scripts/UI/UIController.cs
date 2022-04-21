@@ -62,4 +62,9 @@ public class UIController : MonoBehaviour
   {
     eventBus.DoneFadeOut();
   }
+
+  public void OnExitClick()
+  {
+    eventBus.ExitToMenu();
+  }
 }

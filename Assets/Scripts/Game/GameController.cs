@@ -30,8 +30,9 @@ public class GameController : MonoBehaviour
     game = new Game(numEnemies, attemps);
 
     eventBus = EventBus.GetInstance();
-    eventBus.OnGameStart += onGameStart;
-    eventBus.OnPizzaCollected += onCollectPizza;
+    eventBus.OnGameStart += OnGameStart;
+    eventBus.OnPizzaCollected += OnCollectPizza;
+    eventBus.OnFadeOutDone += OnFadeOutDone;
 
     audioSource = GetComponent<AudioSource>();
     wherePizza = Resources.Load<AudioClip>("Sounds/where_pizza");
@@ -42,8 +43,9 @@ public class GameController : MonoBehaviour
   /// </summary>
   void OnDestroy()
   {
-    eventBus.OnGameStart -= onGameStart;
-    eventBus.OnPizzaCollected -= onCollectPizza;
+    eventBus.OnGameStart -= OnGameStart;
+    eventBus.OnPizzaCollected -= OnCollectPizza;
+    eventBus.OnFadeOutDone -= OnFadeOutDone;
   }
 
   // Update is called once per frame
@@ -61,13 +63,13 @@ public class GameController : MonoBehaviour
   }
 
   // Own events implementation
-  void onGameStart()
+  void OnGameStart()
   {
     if (game.hasPizza)
     {
       int stars = game.Finish();
       data.FinishStage(game);
-      SceneManager.LoadScene("PostStage");
+      eventBus.StartFadeOut();
       return;
     }
 
@@ -76,7 +78,7 @@ public class GameController : MonoBehaviour
       bool dead = game.KillPek();
       if (dead)
       {
-        SceneManager.LoadScene("Gameover");
+        eventBus.StartFadeOut();
         return;
       }
     }
@@ -87,8 +89,14 @@ public class GameController : MonoBehaviour
     }
   }
 
-  void onCollectPizza()
+  void OnCollectPizza()
   {
     game.CollectPizza();
+  }
+
+  void OnFadeOutDone()
+  {
+    string scene = game.hasPizza ? "PostStage" : "Gameover";
+    SceneManager.LoadScene(scene);
   }
 }

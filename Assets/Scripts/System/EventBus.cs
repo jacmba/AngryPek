@@ -13,6 +13,9 @@ public class EventBus
   public event Action OnPizzaCollected;
   public event Action OnPizzaShow;
   public event Action OnAdComplete;
+  public event Action OnGameRendered;
+  public event Action OnFadeOutStarted;
+  public event Action OnFadeOutDone;
 
   private EventBus() { }
 
@@ -55,5 +58,20 @@ public class EventBus
   public void CompleteAd()
   {
     OnAdComplete?.Invoke();
+  }
+
+  public void RenderGame()
+  {
+    OnGameRendered?.Invoke();
+  }
+
+  public void StartFadeOut()
+  {
+    OnFadeOutStarted?.Invoke();
+  }
+
+  public void DoneFadeOut()
+  {
+    OnFadeOutDone?.Invoke();
   }
 }

@@ -15,5 +15,6 @@ MonoBehaviour:
   level: 1
   stars: 0
   totalStars: 0
+  accStars: 0
   pieces: 0
   attempts: 3

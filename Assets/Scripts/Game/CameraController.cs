@@ -9,7 +9,8 @@ public class CameraController : MonoBehaviour
     TRAVELLING,
     UNTRAVELLING,
     IDLE,
-    LAUNCH
+    LAUNCH,
+    FADING
   }
 
   [SerializeField]
@@ -30,14 +31,17 @@ public class CameraController : MonoBehaviour
   private State state;
   private Vector3 origin;
   private float offset;
+  private Animator animator;
   private EventBus eventBus;
 
   // Start is called before the first frame update
   void Start()
   {
     origin = transform.position;
-    state = State.TRAVELLING;
+    state = State.FADING;
     offset = transform.position.x - pek.position.x;
+
+    animator = GetComponent<Animator>();
 
     eventBus = EventBus.GetInstance();
     eventBus.OnLaunchPek += OnLaunchPek;
@@ -104,5 +108,11 @@ public class CameraController : MonoBehaviour
   void move(float pos)
   {
     transform.position = new Vector3(pos, transform.position.y, transform.position.z);
+  }
+
+  public void OnFadeInDone()
+  {
+    state = State.TRAVELLING;
+    eventBus.RenderGame();
   }
 }

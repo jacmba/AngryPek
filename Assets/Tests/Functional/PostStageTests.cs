@@ -47,7 +47,8 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldEnableAllStars()
   {
-    data.FinishStage(3);
+    Game game = new Game(0, 3);
+    data.FinishStage(game);
     yield return new WaitForSeconds(3);
     GameObject star1 = GameObject.Find("star");
     GameObject star2 = GameObject.Find("star (1)");
@@ -61,7 +62,8 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveTwoEnabledStars()
   {
-    data.FinishStage(2);
+    Game game = new Game(0, 2);
+    data.FinishStage(game);
     yield return new WaitForSeconds(3);
     GameObject star1 = GameObject.Find("star");
     GameObject star2 = GameObject.Find("star (1)");
@@ -75,7 +77,8 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveOneActivePizzaBit()
   {
-    data.FinishStage(1);
+    Game game = new Game(0, 1);
+    data.FinishStage(game);
     //yield return new WaitForSeconds(5);
     GameObject piece1 = GameObject.Find("PizzaBitPrefab");
     GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");
@@ -92,8 +95,9 @@ public class PostStageTests
   [UnityTest]
   public IEnumerator PostStageTestShouldHaveTwoActivePizzaBits()
   {
+    Game game = new Game(0, 2);
     data.pieces = 1;
-    data.FinishStage(2);
+    data.FinishStage(game);
     yield return new WaitForSeconds(5);
     GameObject piece1 = GameObject.Find("PizzaBitPrefab");
     GameObject piece2 = GameObject.Find("PizzaBitPrefab (1)");

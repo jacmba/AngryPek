@@ -22,13 +22,18 @@ public class GameData : ScriptableObject
     attempts = Constants.MAX_ATTEMPTS;
   }
 
-  public bool FinishStage(int stars)
+  public bool FinishStage(Game game)
   {
+    stars = game.Finish();
     level++;
     pieces++;
-    this.stars = stars;
     totalStars += stars;
     accStars += stars;
+
+    if (game.attempts < Constants.MAX_ATTEMPTS)
+    {
+      attempts = Constants.MAX_ATTEMPTS;
+    }
 
     if (accStars >= 5)
     {

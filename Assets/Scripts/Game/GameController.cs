@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
   // Stage variables
-  [SerializeField] public int attemps;
+  [SerializeField] private int attemps;
   [SerializeField] private bool isSandbox = false;
   [SerializeField] private int numEnemies = 0;
   [SerializeField] GameData data;
 
+  public Game game { get; private set; }
   private AudioClip wherePizza;
   private AudioSource audioSource;
   private bool started;
-  private Game game;
   private bool canTouch;
   private EventBus eventBus;
 
@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     }
     started = false;
     canTouch = false;
-    game = new Game(numEnemies);
+    game = new Game(numEnemies, attemps);
 
     eventBus = EventBus.GetInstance();
     eventBus.OnGameStart += onGameStart;
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
   {
     if (game.hasPizza)
     {
-      int stars = game.Finish(attemps);
+      int stars = game.Finish();
       data.FinishStage(stars);
       SceneManager.LoadScene("PostStage");
       return;
@@ -73,8 +73,8 @@ public class GameController : MonoBehaviour
 
     if (started)
     {
-      attemps--;
-      if (attemps == 0)
+      bool dead = game.KillPek();
+      if (dead)
       {
         SceneManager.LoadScene("Gameover");
         return;

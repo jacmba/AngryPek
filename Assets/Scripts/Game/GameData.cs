@@ -32,7 +32,7 @@ public class GameData : ScriptableObject
 
     if (accStars >= 5)
     {
-      attempts++;
+      this.attempts++;
       accStars -= 5;
       return true;
     }

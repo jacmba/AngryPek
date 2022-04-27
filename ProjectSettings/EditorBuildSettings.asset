@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Stages/World1/World1_7.unity
     guid: 42bec2d215b94df3687eaeb332ebf485
   - enabled: 1
+    path: Assets/Scenes/Stages/World1/World1_8.unity
+    guid: 2a2a48d7a0c879563b14d6e83efbbb2a
+  - enabled: 1
     path: Assets/Scenes/PostStage.unity
     guid: 8ab7f20a4037aed38ae88b351450b92a
   - enabled: 1

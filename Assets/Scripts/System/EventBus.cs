@@ -17,6 +17,7 @@ public class EventBus
   public event Action OnFadeOutStarted;
   public event Action OnFadeOutDone;
   public event Action OnExitToMenu;
+  public event Action OnBoundaryEntered;
 
   private EventBus() { }
 
@@ -79,5 +80,10 @@ public class EventBus
   public void ExitToMenu()
   {
     OnExitToMenu?.Invoke();
+  }
+
+  public void EnterBoundary()
+  {
+    OnBoundaryEntered?.Invoke();
   }
 }

@@ -19,7 +19,6 @@ public class PekController : MonoBehaviour
   private Quaternion noRotation;
   private Vector3 origin;
   private State state;
-  private float timer;
   private Rigidbody body;
   private AudioSource audioSource;
   private AudioClip yumClip;
@@ -41,6 +40,7 @@ public class PekController : MonoBehaviour
     eventBus.OnDragStart += OnDragStart;
     eventBus.OnLaunchPek += OnLaunchPek;
     eventBus.OnPizzaCollected += OnPizzaCollected;
+    eventBus.OnBoundaryEntered += OnBoundaryEntered;
 
     yumClip = Resources.Load<AudioClip>("Sounds/yumyum");
     ooyClip = Resources.Load<AudioClip>("Sounds/ooy");
@@ -55,6 +55,7 @@ public class PekController : MonoBehaviour
     eventBus.OnDragStart -= OnDragStart;
     eventBus.OnLaunchPek -= OnLaunchPek;
     eventBus.OnPizzaCollected -= OnPizzaCollected;
+    eventBus.OnBoundaryEntered -= OnBoundaryEntered;
   }
 
   // Update is called once per frame
@@ -65,15 +66,8 @@ public class PekController : MonoBehaviour
       case State.TOUCHED:
         if (body.velocity.magnitude < 0.2f)
         {
-          timer = spawnTime;
+          StartCoroutine(ResetRequest());
           state = State.STOPPED;
-        }
-        break;
-      case State.STOPPED:
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-          PekReset();
         }
         break;
       default:
@@ -122,6 +116,15 @@ public class PekController : MonoBehaviour
     audioSource.PlayOneShot(yumClip);
   }
 
+  void OnBoundaryEntered()
+  {
+    if (state != State.STOPPED)
+    {
+      state = State.STOPPED;
+      StartCoroutine(ResetRequest());
+    }
+  }
+
   void PekReset()
   {
     transform.rotation = noRotation;
@@ -130,5 +133,11 @@ public class PekController : MonoBehaviour
     body.isKinematic = true;
     state = State.IDLE;
     eventBus.StartGame();
+  }
+
+  IEnumerator ResetRequest()
+  {
+    yield return new WaitForSeconds(spawnTime);
+    PekReset();
   }
 }

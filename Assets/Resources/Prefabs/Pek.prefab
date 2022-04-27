@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4cca5b2ab4a07b9c9fb57e99d1cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 3
+  spawnTime: 1
 --- !u!82 &1729377867
 AudioSource:
   m_ObjectHideFlags: 0

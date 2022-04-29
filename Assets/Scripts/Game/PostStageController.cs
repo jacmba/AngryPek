@@ -9,6 +9,7 @@ public class PostStageController : MonoBehaviour
   [SerializeField] private GameObject pizzaBox;
   [SerializeField] private GameObject continueText;
   [SerializeField] private GameData data;
+  [SerializeField] private GameObject counterPanel;
 
   private bool canContinue;
   private bool canTouch;
@@ -26,6 +27,7 @@ public class PostStageController : MonoBehaviour
     eventBus = EventBus.GetInstance();
     eventBus.OnPizzaShow += onPizzaShow;
     eventBus.OnAdComplete += onAdComplete;
+    eventBus.OnCounterShown += ShowContinue;
 
     StartCoroutine(ShowStars());
   }
@@ -37,6 +39,7 @@ public class PostStageController : MonoBehaviour
   {
     eventBus.OnPizzaShow -= onPizzaShow;
     eventBus.OnAdComplete -= onAdComplete;
+    eventBus.OnCounterShown -= ShowContinue;
   }
 
   // Update is called once per frame
@@ -74,7 +77,7 @@ public class PostStageController : MonoBehaviour
   {
     Debug.Log("Ad Complete!!");
     canTouch = false;
-    ShowContinue();
+    ShowCounter();
   }
 
   IEnumerator pizzaShow()
@@ -89,7 +92,7 @@ public class PostStageController : MonoBehaviour
     }
     else
     {
-      ShowContinue();
+      ShowCounter();
     }
   }
 
@@ -97,5 +100,10 @@ public class PostStageController : MonoBehaviour
   {
     continueText.SetActive(true);
     canContinue = true;
+  }
+
+  void ShowCounter()
+  {
+    counterPanel.SetActive(true);
   }
 }

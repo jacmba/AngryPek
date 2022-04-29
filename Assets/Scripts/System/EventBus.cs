@@ -18,6 +18,8 @@ public class EventBus
   public event Action OnFadeOutDone;
   public event Action OnExitToMenu;
   public event Action OnBoundaryEntered;
+  public event Action OnStarsCounterAnimated;
+  public event Action OnCounterShown;
 
   private EventBus() { }
 
@@ -85,5 +87,15 @@ public class EventBus
   public void EnterBoundary()
   {
     OnBoundaryEntered?.Invoke();
+  }
+
+  public void AnimateStarsCounter()
+  {
+    OnStarsCounterAnimated?.Invoke();
+  }
+
+  public void ShowCounter()
+  {
+    OnCounterShown?.Invoke();
   }
 }

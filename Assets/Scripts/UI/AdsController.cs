@@ -84,7 +84,7 @@ public class AdsController : MonoBehaviour, IUnityAdsInitializationListener, IUn
     Debug.Log($"Ad show complete: {id} - {state.ToString()}");
     if (state == UnityAdsShowCompletionState.COMPLETED)
     {
-      data.attempts++;
+      data.IncreaseAttempts();
     }
     eventBus.CompleteAd();
   }

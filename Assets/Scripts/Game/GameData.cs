@@ -11,6 +11,7 @@ public class GameData : ScriptableObject
   public int accStars;
   public int pieces;
   public int attempts;
+  public int newAttempts;
 
   public void Clean()
   {
@@ -19,6 +20,7 @@ public class GameData : ScriptableObject
     totalStars = 0;
     accStars = 0;
     pieces = 0;
+    newAttempts = 0;
     attempts = Constants.MAX_ATTEMPTS;
   }
 
@@ -29,6 +31,7 @@ public class GameData : ScriptableObject
     pieces++;
     totalStars += stars;
     accStars += stars;
+    newAttempts = 0;
 
     if (game.attempts < Constants.MAX_ATTEMPTS)
     {
@@ -38,10 +41,17 @@ public class GameData : ScriptableObject
     if (accStars >= 5)
     {
       this.attempts++;
+      newAttempts++;
       accStars -= 5;
       return true;
     }
 
     return false;
+  }
+
+  public void IncreaseAttempts()
+  {
+    attempts++;
+    newAttempts++;
   }
 }
